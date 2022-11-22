@@ -44,11 +44,7 @@ const PostsController = {
           throw err
         }
         
-        const txt = Post.commentInfo;
-        const obj = JSON.parse(txt);
-        
-        //res.status(200).redirect('/posts')
-        res.render('/posts/comments', { obj })
+        res.status(200).redirect('/posts')
       })
       },
 

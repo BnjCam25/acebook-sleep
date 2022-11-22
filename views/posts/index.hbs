@@ -18,15 +18,21 @@
      </form>
      <p id="demo"></p>
   </div>
-    {{#each obj}}
-    <p>{{this.commenter}}</p>
-    {{/each}}
+  <li>{{this.commentInfo}}</li>
   <br>
   <br>
   {{/each}}
 </ul>
 
 <script> 
+const txt = this.commentInfo;
+console.log(txt);
+document.getElementById("demo").innerHTML = obj.commentContent
+
+
+
+const obj = JSON.parse(txt);
+
   function showDiv(event) {
     console.log(event)
 
