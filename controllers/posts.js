@@ -10,12 +10,12 @@ const PostsController = {
       }
 
       posts.reverse();
-      res.render('posts/index', { posts, current_user: req.session.user.first_name })
+      res.render('posts/index', { posts, current_user: req.session.user.first_name})
       })
     },
 
   New: (req, res) => {
-    res.render('posts/new', { current_user: req.session.user.first_name })
+    res.render('posts/new', { current_user: req.session.user.first_name})
   },
 
   Create: (req, res) => {
@@ -25,7 +25,7 @@ const PostsController = {
       user_id: req.session.user
     });
       // if there's an error, returns error and redirects to /posts
-      if (post.message != "") {
+      if (post.message !== "") {
         post.save((err) => {
           if (err) {
             throw err;
@@ -39,22 +39,22 @@ const PostsController = {
     },
 
     Comments: (req, res) => {
-      Post.findOneAndUpdate({ _id: req.body.id }, { $push: { comments: req.body.comments, commenters: req.session.user._id } }, { returnNewDocument: true }).exec((err) => {
+      Post.findOneAndUpdate({ _id: req.body.id }, { $push: { commentInfo: { commenter: req.session.user.first_name, commentContent: req.body.comments } } }, { returnNewDocument: true }).exec((err) => {
         if (err) {
           throw err
         }
-        res.status(200).redirect('/posts')
+        
+        const txt = Post.commentInfo;
+        const obj = JSON.parse(txt);
+        
+        //res.status(200).redirect('/posts')
+        res.render('/posts/comments', { obj })
       })
       },
 
-    Profile: (req,res) => {
+    Profile: (req, res) => {
       res.render('posts/profile', { current_user: req.session.user.first_name, current_user_dob: req.session.user.DOB })
     }
   }
-
-
-  
-  
-  
 
 module.exports = PostsController
