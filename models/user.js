@@ -8,7 +8,8 @@ const UserSchema = new mongoose.Schema({
   first_name: String,
   last_name: String,
   DOB: String,
-  posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
+  friends: { type: Array, default: [] }
 })
 
 UserSchema.pre('save', function(next) {

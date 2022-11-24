@@ -17,7 +17,12 @@ const app = express()
 var hbs = require('hbs');
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
-
+hbs.registerHelper('ifIn', function (elem, list, options) {
+  if (list.indexOf(elem) > -1) {
+    return options.fn(this)
+  }
+  return options.inverse(this)
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))

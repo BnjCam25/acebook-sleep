@@ -1,0 +1,40 @@
+<h1>All users</h1>
+
+<ul class="users">
+    {{#each users}}
+    <br>
+    <li>{{this.first_name}} {{this.last_name}}</li>
+    <li>{{this._id}}</li>
+   <li>
+    <form action="/users/addfriend" method = "POST">
+    <input type="hidden" id={{@index}} name="id" value={{this.id}}>
+    <button id={{this.id}} style = 'background-color: rgb(227, 227, 227);' type="submit">Add friend</button>
+    </form>
+    <br>
+  </li>
+    {{!-- <script>
+    id = document.getElementById("{{@index}}").value
+    
+    $.post('/posts/checklikes', {id:id}).done(function(data){
+        if (data.liked === 'true'){
+        document.getElementById(data.id).style = 'background-color:#B3B1B1';
+        document.getElementById(data.id).innerText = 'Dislike';
+        }
+        else if (data.liked === 'false') {
+        document.getElementById(data.id).style= 'background-color:#E3E3E3';
+        document.getElementById(data.id).innerText = ' Like ';
+        }   
+        })
+    </script> --}}
+
+
+
+
+
+
+
+
+    {{/each}}
+
+
+</ul>

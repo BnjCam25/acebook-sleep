@@ -14,4 +14,18 @@
       <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
       <br>
  {{/each}}
+
+ <p>Number of friends: {{current_user_friends.length}}</p>
+
+ <p>Friends:
+  {{#each users}}
+    <p>{{this}}<p>
+    {{!-- {{#ifIn current_user_id ../this.friends }}
+    <p>{{this}} HELLO</p>
+    {{/ifIn}} --}}
+  {{/each}}
+
+ </p>
+
+
 </ul>
