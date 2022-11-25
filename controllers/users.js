@@ -25,7 +25,7 @@ const UsersController = {
   },
 
   All: (req, res) => {
-    User.find().populate('user_id').exec((err, users) => {
+    User.find({ '_id' : { $ne: req.session.user._id}  }).populate('user_id').exec((err, users) => {
       if (err) {
         throw err
       }
